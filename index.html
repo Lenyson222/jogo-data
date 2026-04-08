@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | O Campo Quântico</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <main class="login-card" id="login-card">
+        <h1>O Campo Quântico</h1>
+        <p class="subtitle">Acesso Restrito. É necessária intervenção temporal (Nível de Ameaça: MÁXIMO).</p>
+        
+        <div id="step-1">
+            <p style="color: #ff4757; font-weight: bold; margin-bottom: 10px;">
+                Insira a sua data de nascimento:
+            </p>
+            <input type="date" id="data-nascimento" class="input-doom">
+            <button class="btn-doom" onclick="confirmarData()" style="margin-top: 20px;">
+                CONFIRMAR
+            </button>
+        </div>
+
+        <div id="step-2" style="display: none;">
+            <p id="dialogo-texto" style="color: #ff4757; font-weight: bold; margin-bottom: 20px; min-height: 50px;">
+                Tem certeza absoluta que essa é sua data de nascimento?
+            </p>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button id="btn-sim" class="btn-doom" onclick="clicouSim()">SIM</button>
+                <button id="btn-nao" class="btn-doom" onclick="clicouNao()">NÃO</button>
+            </div>
+        </div>
+
+        <div id="ui-final" style="display: none;">
+            <h2 style="color: #00f5a0;">ACESSO LIBERADO</h2>
+            <p>Data injetada com sucesso no núcleo:</p>
+            <div id="data-final-display" style="font-size: 2rem; color: #fff; margin: 20px 0;">--/--/----</div>
+        </div>
+    </main>
+
+    <div id="game-container" style="display: none;">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        
+        <div id="crosshair">+</div>
+
+        <div id="blood-screen"></div>
+
+        <div id="flash"></div>
+       <img id="weapon" src="arma.png" alt="Arma em primeira pessoa">
+
+        <div id="doom-hud">
+            <div class="hud-box">
+                <span class="hud-label">AMMO</span>
+                <span class="hud-value" id="hud-ammo">50</span>
+            </div>
+            <div class="hud-box">
+                <span class="hud-label">HEALTH</span>
+                <span class="hud-value" id="hud-health">100%</span>
+            </div>
+            <div class="hud-face" id="hud-face">😠</div>
+            <div class="hud-box">
+                <span class="hud-label">ARMOR</span>
+                <span class="hud-value">0%</span>
+            </div>
+            <div class="hud-box" style="background: rgba(255,0,0,0.1); padding: 0 15px; border: 1px solid #550000;">
+                <span class="hud-label">DATA COLETADA</span>
+                <span class="hud-value" id="hud-date">__/__/____</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+=@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+
+body {
+    background-color: #050505; color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    display: flex; justify-content: center; align-items: center;
+    height: 100vh; overflow: hidden;
+}
+
+.login-card {
+    background: #0a0a0a; border: 4px solid #333;
+    padding: 40px; text-align: center; width: 450px;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.2); z-index: 10;
+}
+
+.login-card h1 { color: #ff0000; margin-bottom: 20px; font-size: 2.5rem; text-shadow: 2px 2px #8b0000; }
+.login-card p { color: #888; margin-bottom: 30px; }
+
+.btn-doom {
+    background: #8b0000; color: #fff; border: 2px solid #ff0000;
+    padding: 15px 20px; font-family: 'JetBrains Mono', monospace; font-size: 1rem;
+    font-weight: bold; cursor: pointer; width: 100%; transition: 0.2s;
+}
+.btn-doom:hover { background: #ff0000; transform: scale(1.05); }
+
+/* ---- INTERFACE DO JOGO 3D ---- */
+#game-container {
+    display: none; position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: #000; z-index: 100; cursor: none; 
+}
+
+canvas { width: 100%; height: calc(100% - 80px); /* Deixa espaço para o HUD */ image-rendering: pixelated; }
+
+#crosshair {
+    position: absolute; top: calc(50% - 40px); left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(0, 255, 0, 0.7); font-size: 40px; font-weight: bold; z-index: 110; pointer-events: none;
+}
+
+/* --- HUD CLÁSSICO DO DOOM --- */
+#doom-hud {
+    position: absolute; bottom: 0; left: 0; width: 100%; height: 80px;
+    background: #2b2b2b; /* Fundo cinza rochoso */
+    background-image: repeating-linear-gradient(45deg, #222 25%, transparent 25%, transparent 75%, #222 75%, #222), repeating-linear-gradient(45deg, #222 25%, #2b2b2b 25%, #2b2b2b 75%, #222 75%, #222);
+    background-position: 0 0, 10px 10px; background-size: 20px 20px;
+    border-top: 4px solid #555; display: flex; justify-content: space-evenly; align-items: center; z-index: 120;
+}
+.hud-box { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.hud-label { color: #aaa; font-size: 14px; font-weight: bold; margin-bottom: 2px; }
+.hud-value { color: #ff0000; font-size: 36px; text-shadow: 3px 3px #000; }
+.hud-face { font-size: 55px; background: #000; border: 2px solid #555; padding: 0 10px; border-radius: 4px; }
+/* --- A ARMA REALISTA --- */
+#weapon {
+    position: absolute; 
+    bottom: 75px; /* Fica mesmo a encostar no HUD */
+    left: 50%; 
+    transform: translateX(-50%);
+    height: 350px; /* Altura realista da arma */
+    width: auto;
+    z-index: 115; /* Fica atrás do HUD (120), mas à frente do cenário */
+    pointer-events: none; 
+    filter: drop-shadow(0 20px 20px rgba(0,0,0,0.8));
+}
+
+/* Fogo do tiro */
+#flash {
+    position: absolute; 
+    bottom: 350px; /* Posicionado exatamente na ponta do cano */
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 150px; height: 150px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,200,1) 0%, rgba(255,100,0,0.8) 40%, rgba(255,0,0,0) 70%);
+    z-index: 116; opacity: 0; pointer-events: none; mix-blend-mode: screen;
+}
+
